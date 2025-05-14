@@ -86,30 +86,30 @@ This is a full-featured event booking system built with Laravel 11. It allows us
                                        🧱 Project Structure
 
 
-project/
-├── app/
-│   ├── Models/
-│   │   ├── User.php
-│   │   ├── Event.php
-│   │   └── Booking.php
-│   ├── Http/
-│   │   ├── Controllers/
-│   │   │   └── API/
-│   │   │       ├── AuthController.php
-│   │   │       ├── EventController.php
-│   │   │       ├── BookingController.php
-│   │   │       └── AdminController.php
-│   ├── Middleware/
-│   │   └── isAdmin.php (if needed)
-├── routes/
-│   └── api.php
-├── database/
-│   ├── migrations/
-│   └── seeders/
-├── storage/
-│   └── app/public/
-├── public/
-│   └── storage → (linked via `php artisan storage:link`)
+project/ 
+├── app/   
+│   ├── Models/   
+│   │   ├── User.php   
+│   │   ├── Event.php    
+│   │   └── Booking.php   
+│   ├── Http/    
+│   │   ├── Controllers/   
+│   │   │   └── API/                        
+│   │   │       ├── AuthController.php                            
+│   │   │       ├── EventController.php                                          
+│   │   │       ├── BookingController.php                               
+│   │   │       └── AdminController.php                                            
+│   ├── Middleware/                                            
+│   │   └── isAdmin.php (if needed)                                        
+├── routes/                                
+│   └── api.php                               
+├── database/                                    
+│   ├── migrations/                                             
+│   └── seeders/                                                  
+├── storage/                                                            
+│   └── app/public/                                                   
+├── public/                                                      
+│   └── storage → (linked via `php artisan storage:link`)                                   
 
 
                                        🧑‍💻 Tech Stack
