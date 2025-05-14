@@ -86,7 +86,7 @@ This is a full-featured event booking system built with Laravel 11. It allows us
                                        🧱 Project Structure
 
 
-project/ 
+project/                                                                                                              
 ├── app/   
 │   ├── Models/   
 │   │   ├── User.php   
