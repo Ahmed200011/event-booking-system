@@ -178,7 +178,7 @@ DELETE	       /user/delete/{id}/event   Delete event
                                      ⚙️ Setup Instructions                                        
 Clone repository                                                                  
 
-git clone https://github.com/Ahmed200011/api-event-booking-system                           
+git clone https://github.com/Ahmed200011/event-booking-system-api                         
 cd api-event-booking-system                                                         
 
                                      [⚠️ Suspicious Content] Install dependencies                  
