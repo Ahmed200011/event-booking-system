@@ -60,10 +60,9 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). -->
 
-
                                      🎟️ Event Booking System API (Laravel)
-This is a full-featured event booking system built with Laravel 11. It allows users to browse and book events, while admins can manage events via an API. Role-based access is implemented using Laratrust.
 
+This is a full-featured event booking system built with Laravel 11. It allows users to browse and book events, while admins can manage events via an API. Role-based access is implemented using Laratrust.
 
 🚀 Features
 -User registration & login (Laravel Sanctum)
@@ -82,51 +81,49 @@ This is a full-featured event booking system built with Laravel 11. It allows us
 
 -API secured via Sanctum token
 
-
                                        🧱 Project Structure
 
-
-
-project/                                                                                                              
-├── app/   
-│   ├── Models/   
-│   │   ├── User.php   
-│   │   ├── Event.php    
-│   │   └── Booking.php   
-│   ├── Http/    
-│   │   ├── Controllers/   
-│   │   │   └── API/                        
-│   │   │       ├── AuthController.php                            
-│   │   │       ├── EventController.php                                          
-│   │   │       ├── BookingController.php                               
-│   │   │       └── AdminController.php                                            
-│   ├── Middleware/                                            
-│   │   └── isAdmin.php (if needed)                                        
-├── routes/                                
-│   └── api.php                               
-├── database/                                    
-│   ├── migrations/                                             
-│   └── seeders/                                                  
-├── storage/                                                            
-│   └── app/public/                                                   
-├── public/                                                      
-│   └── storage → (linked via `php artisan storage:link`)                                   
-
+project/  
+├── app/  
+│ ├── Models/  
+│ │ ├── User.php  
+│ │ ├── Event.php  
+│ │ └── Booking.php  
+│ ├── Http/  
+│ │ ├── Controllers/  
+│ │ │ └── API/  
+│ │ │ ├── AuthController.php  
+│ │ │ ├── EventController.php  
+│ │ │ ├── BookingController.php  
+│ │ │ └── AdminController.php  
+│ ├── Middleware/  
+│ │ └── isAdmin.php (if needed)  
+├── routes/  
+│ └── api.php  
+├── database/  
+│ ├── migrations/  
+│ └── seeders/  
+├── storage/  
+│ └── app/public/  
+├── public/  
+│ └── storage → (linked via `php artisan storage:link`)
 
                                        🧑‍💻 Tech Stack
+
 -Laravel 11
 
 -Laravel Sanctum (API Auth)
 
 -Laratrust (Roles & Permissions)
 
--MySQL 
+-MySQL
 
 -Postman (for API testing)
 
 -File upload via Laravel Storage (local)
 
                                       🗃️ Database Tables
+
 -users
 
 -events
@@ -140,3 +137,40 @@ project/
 -role_user (Pivot)
 
 -permission_role (Pivot)
+
+                                     🔗 API Endpoints (routes/api.php)
+
+📦 Auth
+
+Method         Endpoint             Description
+POST           /auth/register       Register a new user
+POST           /auth/login          Login & get token
+GET            /profile             Get current user profile
+POST           /logout              Logout user
+
+🎫 Events
+
+Method         Endpoint             Description
+GET            /events              List all events
+GET            /events/{id}         Get event details
+
+
+booking
+
+Method         Endpoint             Description
+POST           /bookings            Book an event
+DELETE         /bookings/18         cancel booking
+
+
+
+
+🛠️ Admin (requires role: admin)
+
+Method	       Endpoint	           Description
+POST	       /admin/events	   Create new event
+PUT	           /admin/events/{id}  Update event
+DELETE	       /admin/events/{id}  Delete event
+GET	           /admin/events	   List all events (admin)
+GET	           /admin/events	   List all events (admin)
+
+
