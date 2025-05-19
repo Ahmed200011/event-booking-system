@@ -143,57 +143,55 @@ project/
 📦 Auth
 
 Method         Endpoint             Description
-POST           /auth/register       Register a new user
-POST           /auth/login          Login & get token
-GET            /profile             Get current user profile
-POST           /logout              Logout user
+POST           /auth/register       Register a new user                                              
+POST           /auth/login          Login & get token                                                
+GET            /profile             Get current user profile                                          
+POST           /logout              Logout user                                                  
 
 🎫 Events
 
-Method         Endpoint             Description
-GET            /events              List all events
-GET            /events/{id}         Get event details
+Method         Endpoint             Description                                               
+GET            /events              List all events                                                 
+GET            /events/{id}         Get event details                                             
 
 
 
-🛠️ Admin (requires role: administrator|superadministrator)
+🛠️ Admin (requires role: administrator|superadministrator)                                         
 
-Method	       Endpoint	                 Description
-POST	       /admin/store/event	     Create new event
-PUT	           /admin/update/{id}/event  Update event
-DELETE	       /admin/delete/{id}/event  Delete event
-GET	           /admin/all/events	     List all events (admin)
-GET	           /admin/all/bookings	     List all events (admin)
-
-
-👤 user 
-
-Method	       Endpoint	                 Description
-POST	       /user/events	             Show all user event
-POST	       /user/bookEvent           booking an event
-DELETE	       /user/delete/{id}/event   Delete event
+Method	       Endpoint	                 Description                                              
+POST	       /admin/store/event	     Create new event                                            
+PUT	           /admin/update/{id}/event  Update event                                             
+DELETE	       /admin/delete/{id}/event  Delete event                                          
+GET	           /admin/all/events	     List all events (admin)                                  
+GET	           /admin/all/bookings	     List all events (admin)                                  
 
 
+👤 user                                                                                   
 
-                                     ⚙️ Setup Instructions
-Clone repository
+Method	       Endpoint	                 Description                                        
+POST	       /user/events	             Show all user event                                  
+POST	       /user/bookEvent           booking an event                                      
+DELETE	       /user/delete/{id}/event   Delete event                                            
 
 
 
-git clone https://github.com/Ahmed200011/api-event-booking-system
-cd api-event-booking-system
+                                     ⚙️ Setup Instructions                                        
+Clone repository                                                                  
 
-                                     [⚠️ Suspicious Content] Install dependencies
+git clone https://github.com/Ahmed200011/api-event-booking-system                           
+cd api-event-booking-system                                                         
+
+                                     [⚠️ Suspicious Content] Install dependencies                  
+
+ 
+composer install                                                                
 
 
-composer install
+                                     Create .env and setup database                             
 
 
-                                     Create .env and setup database
-
-
-cp .env.example .env
-php artisan key:generate
+cp .env.example .env                                                     
+php artisan key:generate                                    
 
 
                                     Configure your DB credentials in .env:
@@ -221,10 +219,10 @@ php artisan migrate
 
 
 
-Create storage symlink
+<!-- Create storage symlink
 
 
-php artisan storage:link
+php artisan storage:link -->
 
 
                                     Run the app
