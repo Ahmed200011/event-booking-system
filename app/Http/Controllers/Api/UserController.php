@@ -5,32 +5,28 @@ namespace App\Http\Controllers\Api;
 use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\BookingResource;
+use App\Http\Resources\EventResource;
+use App\Http\Resources\UserResource;
 use App\Models\Booking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class BookingController extends Controller
+class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    // public function index()
-    // {
-    //     $bookings = Booking::all();
 
-    //     return ApiResponse::sendResponse(200, 'Bookings fetched successfully', BookingResource::collection($bookings));
-    // }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $request->validate([
             'event_id' => 'required|exists:events,id',
         ]);
+        if (!$request->user()) {
+            return ApiResponse::sendResponse(401, 'Unauthorized', []);
+        }
+        if (!$request->event_id) {
+            return ApiResponse::sendResponse(404, 'Event not found', []);
+        }
 
-        $user = Auth::user();
+        $user = $request->user();
         if ($user->events()->where('event_id', $request->event_id)->exists()) {
             return response()->json(['message' => 'You already booked this event.'], 409);
         }
@@ -44,14 +40,28 @@ class BookingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($event_id)
+    public function destroy($id)
     {
         $user = Auth::user();
-        $event = $user->events()->where('event_id', $event_id)->first();
+        $event = $user->events()->where('event_id', $id)->first();
         if (!$event) {
             return ApiResponse::sendResponse(404, 'Booking not found for this event..', []);
         }
-        $user->events()->detach($event_id);
+        $user->events()->detach($id);
         return ApiResponse::sendResponse(201, 'Booking canceled successfully.', []);
+    }
+    public function userEvents(Request $request)
+    {
+        $user = $request->user();
+        // $user = Auth::user();
+        $events = $user->events()->get();
+        if ($events->isEmpty()) {
+            return ApiResponse::sendResponse(404, 'No events found for this user', []);
+        }
+        return ApiResponse::sendResponse(
+            200,
+            'User events fetched successfully',
+            EventResource::collection($events)
+        );
     }
 }

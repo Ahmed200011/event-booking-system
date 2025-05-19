@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Helpers\ApiResponse;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EventRequest;
+use App\Http\Resources\EventResource;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -13,38 +18,19 @@ class EventController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $events = Event::all();
+        // $user = Auth::user();
+        $user = Auth::guard('sanctum')->user();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+        if (!$user) {
+            return response()->json(['message' => 'Unauthenticated.'], 401);
+        }
+        // dd(Auth::user());
+        return ApiResponse::sendResponse(200, 'All events have been successfully shown', EventResource::collection($events));
     }
-
-    /**
-     * Display the specified resource.
-     */
     public function show(Event $event)
     {
-        //
+        return ApiResponse::sendResponse(200, 'event has been successfully shown', new EventResource($event));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Event $event)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Event $event)
-    {
-        //
-    }
+  
 }

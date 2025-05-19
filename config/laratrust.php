@@ -177,7 +177,7 @@ return [
         /**
          * Role foreign key on Laratrust's role_user and permission_user tables.
          */
-        'team' => 'team_id',
+        // 'team' => 'team_id',
     ],
 
     /*
