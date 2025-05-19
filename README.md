@@ -221,10 +221,10 @@ php artisan migrate
 
 
 
-<!-- Create storage symlink
+Create storage symlink
 
 
-php artisan storage:link -->
+php artisan storage:link
 
 
                                     Run the app
