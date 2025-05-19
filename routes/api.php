@@ -5,13 +5,9 @@ use App\Http\Controllers\Api\AuthenticationController;
 use App\Http\Controllers\Api\BookingController;
 use App\Http\Controllers\Api\EventController;
 use App\Http\Controllers\Api\UserController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
 route::controller(AuthenticationController::class)->group(function () {
     // Route::get('/login', 'login');
     Route::post('/register', 'register');
@@ -32,13 +28,13 @@ Route::prefix('admin')
     });
 
 
-    Route::apiResource('events', EventController::class)->middleware('auth:sanctum');
-    Route::apiResource('bookings', BookingController::class)->middleware('auth:sanctum');
+Route::apiResource('events', EventController::class)->middleware('auth:sanctum');
+// Route::apiResource('bookings', BookingController::class)->middleware('auth:sanctum');
 
-    Route::prefix('user')
-        ->middleware('auth:sanctum')
-        ->controller(UserController::class)->group(function () {
-            Route::post('/events', 'userEvents');
-            Route::post('/bookEvent', 'store');
-            Route::delete('/delete/{id}/event', 'destroy');
-        });
+Route::prefix('user')
+    ->middleware('auth:sanctum')
+    ->controller(UserController::class)->group(function () {
+        Route::post('/events', 'userEvents');
+        Route::post('/bookEvent', 'store');
+        Route::delete('/delete/{id}/event', 'destroy');
+    });
