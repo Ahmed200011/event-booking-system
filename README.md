@@ -181,7 +181,7 @@ Clone repository
 git clone https://github.com/Ahmed200011/event-booking-system-api                         
 cd api-event-booking-system                                                         
 
-                                     [⚠️ Suspicious Content] Install dependencies                  
+                                     Install dependencies                  
 
  
 composer install                                                                
@@ -198,24 +198,24 @@ php artisan key:generate
 
 
 
-DB_DATABASE=your_db
-DB_USERNAME=root
-DB_PASSWORD=
+DB_DATABASE=your_db                                                                                                           
+DB_USERNAME=root                                                                                                         
+DB_PASSWORD=                                                                                                         
 
 
 
                                    Run migrations & seeders
 
 
-php artisan migrate
-php artisan db:seed
+php artisan migrate                                                                                                         
+php artisan db:seed                                                                                                         
                                    
                                    Install Laratrust & publish config
 
 
-composer require santigarcor/laratrust
-php artisan laratrust:setup
-php artisan migrate
+composer require santigarcor/laratrust                                                                                                    
+php artisan laratrust:setup                                                                                                         
+php artisan migrate                                                                                                         
 
 
 
@@ -228,26 +228,27 @@ php artisan storage:link -->
                                     Run the app
 
 
-php artisan serve
-                                   👤 Default Roles
+php artisan serve                                                                                                         
+
+                                   👤Default Roles
 
 In your seeder or tinker you can add roles:
 
-use App\Models\User;
-use App\Models\Role;
+use App\Models\User;                                                                                                         
+use App\Models\Role;                                                                                                         
 
-Role::create(['name' => 'admin']);
-Role::create(['name' => 'user']);
+Role::create(['name' => 'admin']);                                                                                                        
+Role::create(['name' => 'user']);                                                                                                         
 
-$user = User::find(1);
-$user->attachRole('admin');
+$user = User::find(1);                                                                                                         
+$user->attachRole('admin');                                                                                                         
                                 
-Now the first user is an admin.
+Now the first user is an admin.                                                                                                         
 
                                     🧪 Testing API
-Use Postman or Thunder Client to test routes:
+Use Postman or Thunder Client to test routes:                                                                                             
 
-Add Authorization header: Bearer {token}
+Add Authorization header: Bearer {token}                                                                                                  
 
-Upload images using multipart/form-data for event creation
+Upload images using multipart/form-data for event creation                                                                                                         
 
