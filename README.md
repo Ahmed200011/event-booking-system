@@ -250,5 +250,12 @@ Use Postman or Thunder Client to test routes:
 
 Add Authorization header: Bearer {token}                                                                                                  
 
-Upload images using multipart/form-data for event creation                                                                                                         
+                                    Email Notifications with Event Listeners
+
+This project uses Laravel's **Event Listeners** to handle email notifications, providing a clean and efficient way to send emails without cluttering the controller logic.
+
+- **Welcome Email:** Automatically sent to users when they log in for the first time.
+- **Event Booking Confirmation Email:** Sent immediately after a user successfully books an event, containing detailed information about the booked event.
+
+By leveraging events and listeners, the email sending process is decoupled from the main application flow, improving code maintainability and scalability.
 
