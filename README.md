@@ -143,34 +143,112 @@ project/
 📦 Auth
 
 Method         Endpoint             Description
-POST           /auth/register       Register a new user
-POST           /auth/login          Login & get token
-GET            /profile             Get current user profile
-POST           /logout              Logout user
+POST           /auth/register       Register a new user                                              
+POST           /auth/login          Login & get token                                                
+GET            /profile             Get current user profile                                          
+POST           /logout              Logout user                                                  
 
 🎫 Events
 
-Method         Endpoint             Description
-GET            /events              List all events
-GET            /events/{id}         Get event details
-
-
-booking
-
-Method         Endpoint             Description
-POST           /bookings            Book an event
-DELETE         /bookings/18         cancel booking
+Method         Endpoint             Description                                               
+GET            /events              List all events                                                 
+GET            /events/{id}         Get event details                                             
 
 
 
+🛠️ Admin (requires role: administrator|superadministrator)                                         
 
-🛠️ Admin (requires role: admin)
+Method	       Endpoint	                 Description                                              
+POST	       /admin/store/event	     Create new event                                            
+PUT	           /admin/update/{id}/event  Update event                                             
+DELETE	       /admin/delete/{id}/event  Delete event                                          
+GET	           /admin/all/events	     List all events (admin)                                  
+GET	           /admin/all/bookings	     List all events (admin)                                  
 
-Method	       Endpoint	           Description
-POST	       /admin/events	   Create new event
-PUT	           /admin/events/{id}  Update event
-DELETE	       /admin/events/{id}  Delete event
-GET	           /admin/events	   List all events (admin)
-GET	           /admin/events	   List all events (admin)
 
+👤 user                                                                                   
+
+Method	       Endpoint	                 Description                                        
+POST	       /user/events	             Show all user event                                  
+POST	       /user/bookEvent           booking an event                                      
+DELETE	       /user/delete/{id}/event   Delete event                                            
+
+
+
+                                     ⚙️ Setup Instructions                                        
+Clone repository                                                                  
+
+git clone https://github.com/Ahmed200011/event-booking-system-api                         
+cd api-event-booking-system                                                         
+
+                                     Install dependencies                  
+
+ 
+composer install                                                                
+
+
+                                     Create .env and setup database                             
+
+
+cp .env.example .env                                                     
+php artisan key:generate                                    
+
+
+                                    Configure your DB credentials in .env:
+
+
+
+DB_DATABASE=your_db                                                                                                           
+DB_USERNAME=root                                                                                                         
+DB_PASSWORD=                                                                                                         
+
+
+
+                                   Run migrations & seeders
+
+
+php artisan migrate                                                                                                         
+php artisan db:seed                                                                                                         
+                                   
+                                   Install Laratrust & publish config
+
+
+composer require santigarcor/laratrust                                                                                                    
+php artisan laratrust:setup                                                                                                         
+php artisan migrate                                                                                                         
+
+
+
+<!-- Create storage symlink
+
+
+php artisan storage:link -->
+
+
+                                    Run the app
+
+
+php artisan serve                                                                                                         
+
+                                   👤Default Roles
+
+In your seeder or tinker you can add roles:
+
+use App\Models\User;                                                                                                         
+use App\Models\Role;                                                                                                         
+
+Role::create(['name' => 'admin']);                                                                                                        
+Role::create(['name' => 'user']);                                                                                                         
+
+$user = User::find(1);                                                                                                         
+$user->attachRole('admin');                                                                                                         
+                                
+Now the first user is an admin.                                                                                                         
+
+                                    🧪 Testing API
+Use Postman or Thunder Client to test routes:                                                                                             
+
+Add Authorization header: Bearer {token}                                                                                                  
+
+Upload images using multipart/form-data for event creation                                                                                                         
 
